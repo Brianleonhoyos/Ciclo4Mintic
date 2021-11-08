@@ -31,7 +31,7 @@ public class UsuarioController {
 
 	@GetMapping("/usuarios/{usuario}")
 	  public ResponseEntity<Usuario> BuscarxUsuario(@PathVariable("usuario") String usuario) {
-		  Optional<Usuario> usuarioData = usuarioRepository.findByUsuario(usuario);
+		  Optional<Usuario> usuarioData = Optional.empty();
 
 		  if (usuarioData.isPresent()) {
 		    return new ResponseEntity<>(usuarioData.get(), HttpStatus.OK);
