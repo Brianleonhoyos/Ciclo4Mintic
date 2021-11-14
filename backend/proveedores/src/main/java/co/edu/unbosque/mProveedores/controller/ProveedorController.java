@@ -22,6 +22,7 @@ import co.edu.unbosque.mProveedores.modelo.Proveedor;
 import co.edu.unbosque.mProveedores.repository.ProveedorRepository;
 
 // Muchos errores, ya se quitaron
+// Segundo ensayo 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
