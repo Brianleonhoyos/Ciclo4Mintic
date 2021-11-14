@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unbosque.mProveedores.modelo.Proveedor;
 import co.edu.unbosque.mProveedores.repository.ProveedorRepository;
 
-
+// Muchos errores, ya se quitaron
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
