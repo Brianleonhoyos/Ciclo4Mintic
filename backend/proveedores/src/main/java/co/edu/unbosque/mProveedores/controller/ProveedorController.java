@@ -32,7 +32,7 @@ public class ProveedorController {
 	ProveedorRepository proveRepo;
 	
 	@PostMapping("/proveedores")
-	  public ResponseEntity<Proveedor> createProducto(@RequestBody Proveedor provee) {
+	  public ResponseEntity<Proveedor> createProveedor(@RequestBody Proveedor provee) {
 		  try {
 			  Proveedor proveedor = proveRepo.save(new Proveedor(provee.getNit(), provee.getNombre(), provee.getDireccion(),
 					  provee.getTelefono(), provee.getCiudad()));

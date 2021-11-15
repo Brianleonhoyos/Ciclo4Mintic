@@ -30,7 +30,7 @@ public class ClienteController {
 	ClienteRepository clientRepo;
 
 	@PostMapping("/clientes")
-	public ResponseEntity<Cliente> createProducto(@RequestBody Cliente client) {
+	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente client) {
 		try {
 			Cliente cliente = clientRepo.save(new Cliente(client.getCedula(), client.getNombre(), client.getDireccion(),
 					client.getTelefono(), client.getCorreo()));
@@ -41,11 +41,11 @@ public class ClienteController {
 	}
 
 	@GetMapping("/clientes")
-	public ResponseEntity<List<Cliente>> getAllClientes(@RequestParam(required = false) long cedula) {
+	public ResponseEntity<List<Cliente>> getAllClientes(@RequestParam(required = false) Integer cedula) {
 		try {
 			List<Cliente> clientes = new ArrayList<Cliente>();
 
-			if (cedula == 0)
+			if (cedula == null)
 				clientRepo.findAll().forEach(clientes::add);
 			else
 				clientRepo.findByCedula(cedula).forEach(clientes::add);
@@ -61,7 +61,7 @@ public class ClienteController {
 	}
 
 	@PutMapping("/clientes/{cedula}")
-	public ResponseEntity<Cliente> updateCliente(@PathVariable("cedula") long ced, @RequestBody Cliente cliente) {
+	public ResponseEntity<Cliente> updateCliente(@PathVariable("cedula") Integer ced, @RequestBody Cliente cliente) {
 		Optional<Cliente> clienteData = clientRepo.findByCedulaO(ced);
 		if (clienteData.isEmpty()) {
 			Cliente client = clienteData.get();
@@ -77,8 +77,8 @@ public class ClienteController {
 		}
 	}
 
-	@DeleteMapping("/clienets/{cedula}")
-	public ResponseEntity<HttpStatus> deleteProducto(@PathVariable("cedula") long cedula) {
+	@DeleteMapping("/clientes/{cedula}")
+	public ResponseEntity<HttpStatus> deleteCliente(@PathVariable("cedula") Integer cedula) {
 		try {
 			clientRepo.deleteByCedula(cedula);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
