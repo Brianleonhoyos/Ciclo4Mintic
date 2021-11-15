@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1> Gestion de archivos</h1>
+
+    <h2>Seleccionar para procesar y luego mostrar en tabla</h2>
+    <p>Selecciona el archivo a gestionar</p>
+    <input type="file" id="archivo" />
+    <h4>Contenido del archivo:</h4>
+    <div id="tablares"></div>
+    <hr />
+
+    <script>
+        /**
+         * Importar y operar con .csv
+         **/
+        function crearTabla(data) {
+            const todasFilas = data.split(/\r?\n|\r/);
+            let tabla = '<table>';
+            for (let fila = 0; fila < todasFilas.length; fila++) {
+                if (fila === 0) {
+                    tabla += '<thead>';
+                    tabla += '<tr>';
+                } else {
+                    tabla += '<tr>';
+                }
+                const celdasFila = todasFilas[fila].split(';');
+                for (let rowCell = 0; rowCell < celdasFila.length; rowCell++) {
+                    if (fila === 0) {
+                        tabla += '<th>';
+                        tabla += celdasFila[rowCell];
+                        tabla += '</th>';
+                    } else {
+                        tabla += '<td>';
+                        if (rowCell === 3) {
+                            tabla += celdasFila[rowCell];
+                        } else {
+                            tabla += celdasFila[rowCell];
+                        }
+                        tabla += '</td>';
+                    }
+                }
+                if (fila === 0) {
+                    tabla += '</tr>';
+                    tabla += '</thead>';
+                    tabla += '<tbody>';
+                } else {
+                    tabla += '</tr>';
+                }
+            }
+            tabla += '</tbody>';
+            tabla += '</table>';
+            document.querySelector('#tablares').innerHTML = tabla;
+        }
+
+        function leerArchivo2(evt) {
+            let file = evt.target.files[0];
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                // Cuando el archivo se terminó de cargar
+                crearTabla(e.target.result)
+            };
+            // Leemos el contenido del archivo seleccionado
+            reader.readAsText(file);
+        }
+        document.querySelector('#archivo')
+            .addEventListener('change', leerArchivo2, false);
+    </script>
+</body>
+
+</html>
