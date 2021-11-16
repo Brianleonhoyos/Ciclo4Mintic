@@ -30,7 +30,7 @@ public class ClienteController {
 	ClienteRepository clientRepo;
 
 	@PostMapping("/clientes")
-	public ResponseEntity<Cliente> createProducto(@RequestBody Cliente client) {
+	public ResponseEntity<Cliente> createCliente(@RequestBody Cliente client) {
 		try {
 			Cliente cliente = clientRepo.save(new Cliente(client.getCedula(), client.getNombre(), client.getDireccion(),
 					client.getTelefono(), client.getCorreo()));
@@ -77,8 +77,8 @@ public class ClienteController {
 		}
 	}
 
-	@DeleteMapping("/clienets/{cedula}")
-	public ResponseEntity<HttpStatus> deleteProducto(@PathVariable("cedula") long cedula) {
+	@DeleteMapping("/clientes/{cedula}")
+	public ResponseEntity<HttpStatus> deleteCliente(@PathVariable("cedula") long cedula) {
 		try {
 			clientRepo.deleteByCedula(cedula);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
