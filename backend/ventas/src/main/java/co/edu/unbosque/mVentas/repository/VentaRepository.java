@@ -10,4 +10,8 @@ public interface VentaRepository extends MongoRepository<Venta, String>{
 	
 	List<Venta> findByCodigoVenta(Integer codigo);
 
+	boolean existsByCodigoVenta(Integer codigo);
+
+	void deleteByCodigoVenta(Integer codigo);
+
 }
