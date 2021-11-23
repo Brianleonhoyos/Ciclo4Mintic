@@ -9,8 +9,9 @@ import co.edu.unbosque.mClientes.modelo.Cliente;
 
 
 public interface ClienteRepository extends MongoRepository<Cliente, String> {
-	Optional<Cliente> findByCedulaO(long cedula);
-	List<Cliente> findByCedula (long cedula);
-	void deleteByCedula(long cedula);
+	public boolean existsByCedula(Integer ced);
+	//Optional<Cliente> findByCedu(Integer ced);
+	List<Cliente> findByCedula (Integer ced);
+	void deleteByCedula(Integer ced);
 
 }

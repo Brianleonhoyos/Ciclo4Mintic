@@ -25,13 +25,13 @@ import co.edu.unbosque.mProveedores.repository.ProveedorRepository;
 // Segundo ensayo 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/proveedores")
 public class ProveedorController {
 
 	@Autowired
 	ProveedorRepository proveRepo;
 	
-	@PostMapping("/proveedores")
+	@PostMapping("/guardar")
 	  public ResponseEntity<Proveedor> createProveedor(@RequestBody Proveedor provee) {
 		  try {
 			  Proveedor proveedor = proveRepo.save(new Proveedor(provee.getNit(), provee.getNombre(), provee.getDireccion(),
@@ -42,7 +42,7 @@ public class ProveedorController {
 			  }
 	  }
 	
-	 @GetMapping("/proveedores")
+	 @GetMapping("/listar")
 	  public ResponseEntity<List<Proveedor>> getAllProveedores(@RequestParam(required = false) Integer nit) {
 		  try {
 			    List<Proveedor> proveedores = new ArrayList<Proveedor>();
@@ -62,9 +62,10 @@ public class ProveedorController {
 			  }
 	  }
 	 
-	 @PutMapping("/proveedores/{nit}")
+	 @PutMapping("/actualizar/{nit}")
 	  public ResponseEntity<Proveedor> updateProveedor(@PathVariable("nit") Integer nit, @RequestBody Proveedor proveedor) {
-		  Optional<Proveedor> proveeData = proveRepo.findByNitO(nit);    
+		  Optional<Proveedor> proveeData = proveRepo.findByNitO(nit); 
+		  List<Proveedor> proveedores = new ArrayList<Proveedor>();
 		  if (proveeData.isEmpty()) {
 			  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		 } else {
@@ -79,7 +80,7 @@ public class ProveedorController {
 		  }
 	  }
 
-	 @DeleteMapping("/proveedores/{nit}")
+	 @DeleteMapping("/eliminar/{nit}")
 	 public ResponseEntity<HttpStatus> deleteProveedor(@PathVariable("nit") Integer nit) {
 	   try {
 		   proveRepo.deleteByNit(nit);
@@ -89,7 +90,7 @@ public class ProveedorController {
 	   }
 	 }
 
-	 @DeleteMapping("/proveedores")
+	 @DeleteMapping("/eliminarTodos")
 	 public ResponseEntity<HttpStatus> deleteAllProveedores() {
 	   try {
 		   proveRepo.deleteAll();
