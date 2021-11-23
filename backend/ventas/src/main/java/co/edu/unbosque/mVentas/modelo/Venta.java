@@ -14,16 +14,16 @@ public class Venta {
 	private Integer cedulaCliente;
 	private Integer codigoVenta;
 	private ArrayList detalleVenta;
-	private Number ivaVenta;
-	private Number totalVenta;
-	private Number volorVenta;
+	private Double ivaVenta;
+	private Double  totalVenta;
+	private Double  volorVenta;
 
 	public Venta() {
 
 	}
 
-	public Venta(Integer cedulaCliente, Integer codigoVenta, ArrayList detalleVenta, Number ivaVenta, Number totalVenta,
-			Number volorVenta) {
+	public Venta(Integer cedulaCliente, Integer codigoVenta, ArrayList detalleVenta, Double  ivaVenta, Double  totalVenta,
+			Double  volorVenta) {
 		this.cedulaCliente = cedulaCliente;
 		this.codigoVenta = codigoVenta;
 		this.detalleVenta = detalleVenta;
@@ -64,27 +64,27 @@ public class Venta {
 		this.detalleVenta = detalleVenta;
 	}
 
-	public Number getIvaVenta() {
+	public Double  getIvaVenta() {
 		return ivaVenta;
 	}
 
-	public void setIvaVenta(Number ivaVenta) {
+	public void setIvaVenta(Double  ivaVenta) {
 		this.ivaVenta = ivaVenta;
 	}
 
-	public Number getTotalVenta() {
+	public Double  getTotalVenta() {
 		return totalVenta;
 	}
 
-	public void setTotalVenta(Number totalVenta) {
+	public void setTotalVenta(Double  totalVenta) {
 		this.totalVenta = totalVenta;
 	}
 
-	public Number getVolorVenta() {
+	public Double  getVolorVenta() {
 		return volorVenta;
 	}
 
-	public void setVolorVenta(Number volorVenta) {
+	public void setVolorVenta(Double  volorVenta) {
 		this.volorVenta = volorVenta;
 	}
 
