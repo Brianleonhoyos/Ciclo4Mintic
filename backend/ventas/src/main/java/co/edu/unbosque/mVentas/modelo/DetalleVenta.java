@@ -10,16 +10,16 @@ public class DetalleVenta {
 
 	private Integer cantidadProducto;
 	private Integer codigoProducto;
-	private Number valorTotal;
-	private Number valorVenta;
-	private Number valorIva;
+	private Double valorTotal;
+	private Double valorVenta;
+	private Double valorIva;
 
 	public DetalleVenta() {
 
 	}
 
-	public DetalleVenta(Integer cantidadProducto, Integer codigoProducto, Number valorTotal, Number valorVenta,
-			Number valorIva) {
+	public DetalleVenta(Integer cantidadProducto, Integer codigoProducto, Double valorTotal, Double valorVenta,
+			Double valorIva) {
 		this.cantidadProducto = cantidadProducto;
 		this.codigoProducto = codigoProducto;
 		this.valorTotal = valorTotal;
@@ -51,27 +51,27 @@ public class DetalleVenta {
 		this.codigoProducto = codigoProducto;
 	}
 
-	public Number getValorTotal() {
+	public Double getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(Number valorTotal) {
+	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 
-	public Number getValorVenta() {
+	public Double getValorVenta() {
 		return valorVenta;
 	}
 
-	public void setValorVenta(Number valorVenta) {
+	public void setValorVenta(Double valorVenta) {
 		this.valorVenta = valorVenta;
 	}
 
-	public Number getValorIva() {
+	public Double getValorIva() {
 		return valorIva;
 	}
 
-	public void setValorIva(Number valorIva) {
+	public void setValorIva(Double valorIva) {
 		this.valorIva = valorIva;
 	}
 

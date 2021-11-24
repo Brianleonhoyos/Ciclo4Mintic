@@ -13,7 +13,7 @@ public class Venta {
 
 	private Integer cedulaCliente;
 	private Integer codigoVenta;
-	private ArrayList detalleVenta;
+	private ArrayList<DetalleVenta> detalleVenta= new ArrayList<DetalleVenta>();
 	private Double ivaVenta;
 	private Double  totalVenta;
 	private Double  volorVenta;
@@ -22,7 +22,7 @@ public class Venta {
 
 	}
 
-	public Venta(Integer cedulaCliente, Integer codigoVenta, ArrayList detalleVenta, Double  ivaVenta, Double  totalVenta,
+	public Venta(Integer cedulaCliente, Integer codigoVenta, ArrayList<DetalleVenta> detalleVenta, Double  ivaVenta, Double  totalVenta,
 			Double  volorVenta) {
 		this.cedulaCliente = cedulaCliente;
 		this.codigoVenta = codigoVenta;
@@ -56,11 +56,11 @@ public class Venta {
 		this.codigoVenta = codigoVenta;
 	}
 
-	public ArrayList getDetalleVenta() {
+	public ArrayList<DetalleVenta> getDetalleVenta() {
 		return detalleVenta;
 	}
 
-	public void setDetalleVenta(ArrayList detalleVenta) {
+	public void setDetalleVenta(ArrayList<DetalleVenta> detalleVenta) {
 		this.detalleVenta = detalleVenta;
 	}
 
