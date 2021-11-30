@@ -22,80 +22,88 @@ import co.edu.unbosque.mProveedores.modelo.Proveedor;
 import co.edu.unbosque.mProveedores.repository.ProveedorRepository;
 
 // Muchos errores, ya se quitaron
+// Segundo ensayo 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/proveedores")
 public class ProveedorController {
 
 	@Autowired
 	ProveedorRepository proveRepo;
-	
-	@PostMapping("/proveedores")
-	  public ResponseEntity<Proveedor> createProducto(@RequestBody Proveedor provee) {
-		  try {
-			  Proveedor proveedor = proveRepo.save(new Proveedor(provee.getNit(), provee.getNombre(), provee.getDireccion(),
-					  provee.getTelefono(), provee.getCiudad()));
-			    return new ResponseEntity<>(proveedor, HttpStatus.CREATED);
-			  } catch (Exception e) {
-			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-			  }
-	  }
-	
-	 @GetMapping("/proveedores")
-	  public ResponseEntity<List<Proveedor>> getAllProveedores(@RequestParam(required = false) Integer nit) {
-		  try {
-			    List<Proveedor> proveedores = new ArrayList<Proveedor>();
 
-			    if (nit == null)
-			    	proveRepo.findAll().forEach(proveedores::add);
-			    else
-			    	proveRepo.findByNit(nit).forEach(proveedores::add);
+	@PostMapping("/guardar")
+	public ResponseEntity<Proveedor> createProveedor(@RequestBody Proveedor provee) {
+		try {
+			if (proveRepo.existsByNit(provee.getNit())) {
+				return new ResponseEntity<>(null, HttpStatus.FOUND);
+			} else {
+				Proveedor proveedor = proveRepo.save(new Proveedor(provee.getNit(), provee.getNombre(),
+						provee.getDireccion(), provee.getTelefono(), provee.getCiudad()));
+				return new ResponseEntity<>(proveedor, HttpStatus.CREATED);
+			}
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
-			    if (proveedores.isEmpty()) {
-			      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			    }
+	@GetMapping("/listar")
+	public ResponseEntity<List<Proveedor>> getAllProveedores(@RequestParam(required = false) Integer nit) {
+		try {
+			List<Proveedor> proveedores = new ArrayList<Proveedor>();
 
-			    return new ResponseEntity<>(proveedores, HttpStatus.OK);
-			  } catch (Exception e) {
-			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-			  }
-	  }
-	 
-	 @PutMapping("/proveedores/{nit}")
-	  public ResponseEntity<Proveedor> updateProveedor(@PathVariable("nit") Integer nit, @RequestBody Proveedor proveedor) {
-		  Optional<Proveedor> proveeData = proveRepo.findByNitO(nit);    
-		  if (proveeData.isEmpty()) {
-			  return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		 } else {
-			 Proveedor provee = proveeData.get();
-			 provee.setNit(proveedor.getNit());
-			 provee.setNombre(proveedor.getNombre());
-			 provee.setDireccion(proveedor.getDireccion());
-			 provee.setTelefono(proveedor.getTelefono());
-			 provee.setCiudad(proveedor.getCiudad());
-			 return new ResponseEntity<>(proveRepo.save(provee), HttpStatus.OK);
-		    		    
-		  }
-	  }
+			if (nit == null)
+				proveRepo.findAll().forEach(proveedores::add);
+			else
+				proveRepo.findByNit(nit).forEach(proveedores::add);
 
-	 @DeleteMapping("/proveedores/{nit}")
-	 public ResponseEntity<HttpStatus> deleteProveedor(@PathVariable("nit") Integer nit) {
-	   try {
-		   proveRepo.deleteByNit(nit);
-	       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	   } catch (Exception e) {
-	     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	   }
-	 }
+			if (proveedores.isEmpty()) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
 
-	 @DeleteMapping("/proveedores")
-	 public ResponseEntity<HttpStatus> deleteAllProveedores() {
-	   try {
-		   proveRepo.deleteAll();
-	     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	   } catch (Exception e) {
-	     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	   }
-	 }
-	
+			return new ResponseEntity<>(proveedores, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PutMapping("/actualizar/{nit}")
+	public ResponseEntity<Proveedor> updateProveedor(@PathVariable("nit") Integer nit,
+			@RequestBody Proveedor proveedor) {
+		// Optional<Proveedor> proveeData = proveRepo.findByNitO(nit);
+		List<Proveedor> proveedores = new ArrayList<Proveedor>();
+		if (proveedores.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		} else {
+			Proveedor provee = proveedores.get(0);
+
+			provee.setNit(proveedor.getNit());
+			provee.setNombre(proveedor.getNombre());
+			provee.setDireccion(proveedor.getDireccion());
+			provee.setTelefono(proveedor.getTelefono());
+			provee.setCiudad(proveedor.getCiudad());
+			return new ResponseEntity<>(proveRepo.save(provee), HttpStatus.OK);
+
+		}
+	}
+
+	@DeleteMapping("/eliminar/{nit}")
+	public ResponseEntity<HttpStatus> deleteProveedor(@PathVariable("nit") Integer nit) {
+		try {
+			proveRepo.deleteByNit(nit);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@DeleteMapping("/eliminarTodos")
+	public ResponseEntity<HttpStatus> deleteAllProveedores() {
+		try {
+			proveRepo.deleteAll();
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
 }

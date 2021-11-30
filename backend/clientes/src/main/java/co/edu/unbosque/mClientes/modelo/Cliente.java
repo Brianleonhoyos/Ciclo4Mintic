@@ -9,7 +9,7 @@ public class Cliente {
 	@Id
 	private String id;
 
-	private long cedula;
+	private Integer cedula;
 	private String nombre;
 	private String direccion;
 	private String telefono;
@@ -19,7 +19,7 @@ public class Cliente {
 		
 	}
 
-	public Cliente(long cedula, String nombre, String direccion, String telefono, String correo) {
+	public Cliente(Integer cedula, String nombre, String direccion, String telefono, String correo) {
 		this.cedula = cedula;
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -35,11 +35,11 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public long getCedula() {
+	public Integer getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(long cedula) {
+	public void setCedula(Integer cedula) {
 		this.cedula = cedula;
 	}
 
@@ -74,5 +74,13 @@ public class Cliente {
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion
+				+ ", telefono=" + telefono + ", correo=" + correo + "]";
+	}
+	
+	
 
 }
