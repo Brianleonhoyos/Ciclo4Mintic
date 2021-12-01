@@ -1,1 +1,56 @@
-<p>Ventas</p>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Menù con tabs | Html - Css</title>
+    <link rel="stylesheet" href="/CSS/ventas.css">
+</head>
+<body>
+    <div class="container">
+        <div class="lbl-menu">
+            <label for="">Formulario De Realicacion Del Pedido</label>
+        </div>
+        
+        <div class="content">
+            <input type="radio" name="radio" id="radio1" checked>
+                <div class="tab1">
+                    <table>
+                        <tr>
+                            <th>Formulario de Compra</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" class= "seleccionable" id="cedula" placeholder="Coloque su Cedula">
+                                <input type="text" class= "noseleccionable" id="cliente" placeholder="Aqui aparecera su Nombre " readonly> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="number" class= "seleccionable" id="codigo" placeholder="Coloque codigo producto">
+                                <input type="number" class= "seleccionable" id="cantidad" placeholder="Coloque que cantidad quiere">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" class= "noseleccionable" id="valor" placeholder="El valor actual del producto" readonly>
+                                <input type="text" class= "noseleccionable" id="totalIVA" placeholder="Total del producto mas IVA" readonly>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>
+                                <button redirigir()>Enviar</button>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/JS/ventas.js"></script>
+</body>
+</html>
