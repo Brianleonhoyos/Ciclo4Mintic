@@ -75,6 +75,7 @@
 2021-11-14 13:24:35,741 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-11-14 13:24:35,742 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2021-11-14 13:24:35,742 [Worker-28: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\WebDevelop\MisProyectos\Ciclo4Mintic\backend\proveedores\src\test\resources
+<<<<<<< HEAD
 2021-11-14 18:55:47,915 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-11-14 18:55:47,916 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2021-11-14 18:55:47,917 [Worker-35: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
@@ -99,3 +100,5 @@ java.io.FileNotFoundException: C:\WebDevelop\MisProyectos\Ciclo4Mintic\backend\.
 	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2354)
 	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:554)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+=======
+>>>>>>> Brian
