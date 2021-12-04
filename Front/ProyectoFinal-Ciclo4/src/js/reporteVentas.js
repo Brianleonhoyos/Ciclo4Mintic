@@ -6,7 +6,7 @@ let tabla = [{}];
 
 router.get('/cargarTabla', isAuthenticated,function (req, res) {
     let codigo = document.getElementById("Codigo");
-    res.redirect('/productos');
+    res.redirect('/api/productos');
     let datos = req.body();
     agregarElemento(datos);
 
@@ -16,7 +16,7 @@ function agregarElemento(datos){
     for(let add of datos){tabla.push(datos)}
     crearTabla(tabla);
 };
-
+ 
 let crearTabla = function (lista){
     let stringTabla = "<tr><th>Cliente</th><th>Cedula</th><th>Fecha Venta</th><th>Codigo del Articulo</th><th>Valor Total de la Venta</th></tr>";
     for(let element of lista){
@@ -48,7 +48,7 @@ let crearTabla = function (lista){
 };
 
 document.getElementById("tablaVentas").innerHTML = crearTabla(cliente);
-//////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////// 
 
 //router.get('/cargarTabla', isAuthenticated,function (req, res) {
     //let codigo = document.getElementById("Codigo");
