@@ -12,29 +12,36 @@
             <label for="radio2">Lista de Clientes</label>
             <label for="radio3">Lista de Proovedores</label>
         </div>
-        
-        <div class="content">
-
-            <input type="radio" name="radio" id="radio1" checked>
-                <div class="tab1">
-                    <table id ="tablaVentas">
-                        
-                    </table>
-                </div>
-            
-            <input type="radio" name="radio" id="radio2">
-                <div class="tab2">
-                    <table id ="tablaClientes">
+        <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <form action="/cargarTabla" method="Get">
+            <div class="content">
+                  
+                <input type="radio" name="radio" id="radio1" checked>
+                    <div class="tab1">
+                        <input type="String" id="Codigo" placeholder="Codigo del Producto">
+                        <table id ="tablaVentas">
                             
-                    </table>
-            <input type="radio" name="radio" id="radio3">
-                <div class="tab3">
-                    <table id ="tablaPro">
-                            
-                    </table>
-                </div>
-        </div>
+                        </table>
+                        <button type="submit">Recargar Tabla</button>
+                    </div>
+                
+                <!--<input type="radio" name="radio" id="radio2">
+                    <div class="tab2">
+                        <table id ="tablaClientes">
+                                
+                        </table>
+                <input type="radio" name="radio" id="radio3">
+                    <div class="tab3">
+                        <table id ="tablaPro">
+                                
+                        </table>
+                    </div>-->
+            </div>
+        </form>
+    <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
     </div>
+    <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
     <script src="/JS/ventasTabla.js"></script>
+    <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
 </body>
 </html>

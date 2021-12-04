@@ -4,16 +4,22 @@
             <div class="card-header mx-auto d-block">
                 <h1>Subir Archivo</h1>
             </div>
-            <div class="card-body">
-                <div class="form-goup p-2 center">
-                    <input type="file" accept=".csv" class="form-control" id="inputGroupFile02">
+            <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
+            <form action="/productos/guardarArchivo" method="Post">
+            <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <div class="card-body">
+                    <div class="form-goup p-2 center">
+                        <input type="file" accept=".csv" class="form-control" id="inputGroupFile02">
+                    </div>
+                    <div class="form-goup p-2 center">
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Cargar
+                        </button>
+                    </div>
                 </div>
-                <div class="form-goup p-2 center">
-                    <button type="submit" class="btn btn-primary btn-block">
-                        Cargar
-                    </button>
-                </div>
-            </div>
+            <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
+            </form>
+            <!---////////////////////////////////////////////////////////////////////////////////////////////////-->
         </div>
     </div>
 </div>
