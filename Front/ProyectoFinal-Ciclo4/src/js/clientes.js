@@ -2,7 +2,7 @@ const { text } = require('express');
 const express = require('express');
 const router = express.Router();
 
-const User = require('../models/User');
+//const User = require('../models/User');
 
 const passport = require('passport');
 
@@ -19,9 +19,9 @@ let consultar = function(){
       //  let datos = req.body();
     //}));
 }
-let crear = function(){
-    window.location = "/crear"
-}
+/*let crear = function(){
+    window.location = "/crear"    ------------> debo de revisar esto porque creo que Brian ya guarda los usuarios en SINGUP
+}*/
 let actualizar = function(){
     window.location = "/actualizar"
 }
@@ -57,6 +57,6 @@ router.get('/actualizar', isAuthenticated,function (req, res) {
 
 router.get('/borrar', isAuthenticated,function (req, res) {
     let cedula = document.getElementById("formGroupExampleInput"); 
-    res.redirect('/clientes/eliminar/{nit}');
+    res.redirect('/clientes/eliminar/{nit} ');
     let datos = req.body();
 });
