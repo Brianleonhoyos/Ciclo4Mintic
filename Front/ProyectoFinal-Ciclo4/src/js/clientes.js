@@ -6,12 +6,6 @@ const router = express.Router();
 
 const passport = require('passport');
 
-
-let nombre = document.getElementById("formGroupExampleInput2"); 
-let direccion = document.getElementById("formGroupExampleInput3"); 
-let telefono = document.getElementById("formGroupExampleInput4"); 
-let correo = document.getElementById("formGroupExampleInput5"); 
-
 let consultar = function(){
     window.location = "/consultar"
     //router.get('/listar', passport.authenticate('local', {
@@ -30,33 +24,37 @@ let borrar = function(){
 }
 
 router.get('/consultar', isAuthenticated,function (req, res) {
-    let cedula = document.getElementById("formGroupExampleInput"); 
+    const {cedula} = req.body; 
     res.redirect('/clientes/listar');
     let datos = req.body();
 });
 
 router.get('/crear', isAuthenticated,function (req, res) {
-    let cedula = document.getElementById("formGroupExampleInput"); 
-    let nombre = document.getElementById("formGroupExampleInput2"); 
-    let direccion = document.getElementById("formGroupExampleInput3"); 
-    let telefono = document.getElementById("formGroupExampleInput4"); 
-    let correo = document.getElementById("formGroupExampleInput5"); 
+
+    const {cedula, nombre, direccion, celular, correo} = req.body;
+    const  User = new user({cedula, nombre, direccion, celular, correo});
+    
+    User.save(err =>{
+        if(err){
+            res.status(500).send('Error al registrar usuario');
+        }
+        else{
+            res.status(200).send('Usuario Registrado');
+        }
+    });
     res.redirect('/clientes/guardar');
-    let datos = req.body();
+
 });
 
 router.get('/actualizar', isAuthenticated,function (req, res) {
-    let cedula = document.getElementById("formGroupExampleInput"); 
-    let nombre = document.getElementById("formGroupExampleInput2"); 
-    let direccion = document.getElementById("formGroupExampleInput3"); 
-    let telefono = document.getElementById("formGroupExampleInput4"); 
-    let correo = document.getElementById("formGroupExampleInput5"); 
+    const {cedula, nombre, direccion, relefono, correo} = req.body;
+    const  User = new user({cedula, nombre, direccion, relefono, correo});
     res.redirect('/clientes/actualizar/{nit}');
-    let datos = req.body();
+    
 });
 
 router.get('/borrar', isAuthenticated,function (req, res) {
-    let cedula = document.getElementById("formGroupExampleInput"); 
+    const {cedula} = req.body; 
     res.redirect('/clientes/eliminar/{nit} ');
-    let datos = req.body();
+
 });
