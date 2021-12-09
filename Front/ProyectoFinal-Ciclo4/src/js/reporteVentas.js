@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 let tabla = [{}];
 
+const User = require('../models/User');
 
 router.get('/cargarTabla', isAuthenticated,function (req, res) {
     let codigo = document.getElementById("Codigo");

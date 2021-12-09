@@ -2,9 +2,34 @@ const { text } = require('express');
 const express = require('express');
 const router = express.Router();
 
-//const User = require('../models/User');
+import React from "react";
+
+class ClientesNueva extends Component{
+    render(){
+        //Aqui van los elementos, al guardar se actualice la pagina
+    
+        return(
+            //Aqui puedo retornar valores html, todo dentro de <div>, si no sale error
+            
+            console.log("hola")
+        )
+    }
+}
+
+
+export default ClientesNueva
+
+
+const User = require('../models/User');
 
 const passport = require('passport');
+
+let crear = function(){
+    window.location = "/crear"
+}
+/*let crear = function(){
+    window.location = "/crear"    ------------> debo de revisar esto porque creo que Brian ya guarda los usuarios en SINGUP
+}*/
 
 let consultar = function(){
     window.location = "/consultar"
@@ -13,9 +38,7 @@ let consultar = function(){
       //  let datos = req.body();
     //}));
 }
-/*let crear = function(){
-    window.location = "/crear"    ------------> debo de revisar esto porque creo que Brian ya guarda los usuarios en SINGUP
-}*/
+
 let actualizar = function(){
     window.location = "/actualizar"
 }
@@ -26,7 +49,6 @@ let borrar = function(){
 router.get('/consultar', isAuthenticated,function (req, res) {
     const {cedula} = req.body; 
     res.redirect('/clientes/listar');
-    let datos = req.body();
 });
 
 router.get('/crear', isAuthenticated,function (req, res) {
