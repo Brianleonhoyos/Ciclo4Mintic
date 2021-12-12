@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,8 +24,10 @@ import co.edu.unbosque.mClientes.modelo.Cliente;
 import co.edu.unbosque.mClientes.repository.ClienteRepository;
 //import jdk.internal.misc.FileSystemOption;
 
-@CrossOrigin(origins = "http://localhost:8081")
+
 @RestController
+@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT,RequestMethod.DELETE })
+
 @RequestMapping("/clientes")
 public class ClienteController {
 
