@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Rutas from './Rutas';
+import Rutas from './Rutas/Rutas';
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
 
     <div className="App">
       <header className="App-header">
-          <Rutas/>
+        <Rutas />
       </header>
     </div>
   );
