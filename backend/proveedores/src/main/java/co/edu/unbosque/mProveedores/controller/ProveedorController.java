@@ -2,7 +2,6 @@ package co.edu.unbosque.mProveedores.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,16 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.mProveedores.modelo.Proveedor;
 import co.edu.unbosque.mProveedores.repository.ProveedorRepository;
 
-// Muchos errores, ya se quitaron
-// Segundo ensayo 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET, 
+		RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/proveedores")
 public class ProveedorController {
 
@@ -69,7 +68,6 @@ public class ProveedorController {
 	@PutMapping("/actualizar/{nit}")
 	public ResponseEntity<Proveedor> updateProveedor(@PathVariable("nit") Integer nit,
 			@RequestBody Proveedor proveedor) {
-		// Optional<Proveedor> proveeData = proveRepo.findByNitO(nit);
 		List<Proveedor> proveedores = new ArrayList<Proveedor>();
 		if (proveedores.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

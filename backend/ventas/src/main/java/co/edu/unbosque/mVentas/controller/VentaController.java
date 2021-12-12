@@ -14,15 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import co.edu.unbosque.mVentas.modelo.Venta;
 import co.edu.unbosque.mVentas.repository.VentaRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET, 
+		RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/ventas")
 public class VentaController {
 	@Autowired
@@ -67,7 +68,6 @@ public class VentaController {
 	@PutMapping("/actualizar/{codigoVenta}")
 	public ResponseEntity<Venta> updateVenta(@PathVariable("codigoVenta") Integer codigodeVenta, @RequestBody Venta venta) {
 		List<Venta> ventas = ventaRepo.findByCodigoVenta(codigodeVenta);
-		// clientRepo.findByCedula(ced).is;
 		if (ventas.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
@@ -104,6 +104,33 @@ public class VentaController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	@GetMapping("/reporteClienetes")
+	public ArrayList<Number> getReporteCliente(){
+		
+		ArrayList <Number>reportes = new ArrayList<Number>();
+		List<Venta> ventas = ventaRepo.findAll();
+		for (int i=0; i < ventas.size() ; i++) {
+			Venta vent = ventas.get(i);
+			Double suma = vent.getTotalVenta();
+			for (int j=0; j < ventas.size(); j++) {
+				j=j+1;
+				Venta ve = ventas.get(j);
+				if(vent.getCedulaCliente() == ve.getCedulaCliente()) {
+					System.out.print(vent.getCedulaCliente());
+					System.out.print(ve.getCedulaCliente());
+					suma = suma +ve.getTotalVenta();
+					System.out.print(suma);
+				}else {
+					reportes.add(vent.getCedulaCliente());
+					reportes.add(suma);
+				}
+			}	
+					
+		}
+		System.out.print(reportes);
+		return reportes;
 	}
 
 }

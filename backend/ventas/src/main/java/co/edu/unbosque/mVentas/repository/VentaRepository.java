@@ -9,6 +9,8 @@ import co.edu.unbosque.mVentas.modelo.Venta;
 public interface VentaRepository extends MongoRepository<Venta, String>{
 	
 	List<Venta> findByCodigoVenta(Integer codigo);
+	
+	List<Venta> findByCedulaCliente(Integer cedula);
 
 	boolean existsByCodigoVenta(Integer codigo);
 

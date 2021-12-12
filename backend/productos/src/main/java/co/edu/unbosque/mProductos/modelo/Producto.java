@@ -12,16 +12,16 @@ public class Producto {
 	private Integer codigo;
 	private String nombreProducto;
 	private Integer nitProveedor;
-	private Number precioCompra;
-	private Number ivaCompra;
-	private Number precioVenta;
+	private Integer precioCompra;
+	private Integer ivaCompra;
+	private Integer precioVenta;
 
 	public Producto() {
 
 	}
 
-	public Producto(Integer codigo, String nombreProducto, Integer nitProveedor, Number precioCompra, Number ivaCompra,
-			Number precioVenta) {
+	public Producto(Integer codigo, String nombreProducto, Integer nitProveedor, Integer precioCompra, Integer ivaCompra,
+			Integer precioVenta) {
 		this.codigo = codigo;
 		this.nombreProducto = nombreProducto;
 		this.nitProveedor = nitProveedor;
@@ -62,27 +62,27 @@ public class Producto {
 		this.nitProveedor = nitProveedor;
 	}
 
-	public Number getPrecioCompra() {
+	public Integer getPrecioCompra() {
 		return precioCompra;
 	}
 
-	public void setPrecioCompra(Number precioCompra) {
+	public void setPrecioCompra(Integer precioCompra) {
 		this.precioCompra = precioCompra;
 	}
 
-	public Number getIvaCompra() {
+	public Integer getIvaCompra() {
 		return ivaCompra;
 	}
 
-	public void setIvaCompra(Number ivaCompra) {
+	public void setIvaCompra(Integer ivaCompra) {
 		this.ivaCompra = ivaCompra;
 	}
 
-	public Number getPrecioVenta() {
+	public Integer getPrecioVenta() {
 		return precioVenta;
 	}
 
-	public void setPrecioVenta(Number precioVenta) {
+	public void setPrecioVenta(Integer precioVenta) {
 		this.precioVenta = precioVenta;
 	}
 

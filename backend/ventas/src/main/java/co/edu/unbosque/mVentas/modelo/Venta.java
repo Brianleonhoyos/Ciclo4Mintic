@@ -16,20 +16,20 @@ public class Venta {
 	private ArrayList<DetalleVenta> detalleVenta= new ArrayList<DetalleVenta>();
 	private Double ivaVenta;
 	private Double  totalVenta;
-	private Double  volorVenta;
+	private Double  valorVenta;
 
 	public Venta() {
 
 	}
 
 	public Venta(Integer cedulaCliente, Integer codigoVenta, ArrayList<DetalleVenta> detalleVenta, Double  ivaVenta, Double  totalVenta,
-			Double  volorVenta) {
+			Double  valorVenta) {
 		this.cedulaCliente = cedulaCliente;
 		this.codigoVenta = codigoVenta;
 		this.detalleVenta = detalleVenta;
 		this.ivaVenta = ivaVenta;
 		this.totalVenta = totalVenta;
-		this.volorVenta = volorVenta;
+		this.valorVenta = valorVenta;
 	}
 
 	public String getId() {
@@ -81,18 +81,18 @@ public class Venta {
 	}
 
 	public Double  getVolorVenta() {
-		return volorVenta;
+		return valorVenta;
 	}
 
-	public void setVolorVenta(Double  volorVenta) {
-		this.volorVenta = volorVenta;
+	public void setVolorVenta(Double  valorVenta) {
+		this.valorVenta = valorVenta;
 	}
 
 	@Override
 	public String toString() {
 		return "Venta [id=" + id + ", cedulaCliente=" + cedulaCliente + ", codigoVenta=" + codigoVenta
 				+ ", detalleVenta=" + detalleVenta + ", ivaVenta=" + ivaVenta + ", totalVenta=" + totalVenta
-				+ ", volorVenta=" + volorVenta + "]";
+				+ ", valorVenta=" + valorVenta + "]";
 	}
 
 	

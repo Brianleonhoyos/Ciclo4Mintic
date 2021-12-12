@@ -1,12 +1,7 @@
 package co.edu.unbosque.mVentas.modelo;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "detalleVentas")
 public class DetalleVenta {
-	@Id
-	private String id;
+	
 
 	private Integer cantidadProducto;
 	private Integer codigoProducto;
@@ -27,13 +22,6 @@ public class DetalleVenta {
 		this.valorIva = valorIva;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public Integer getCantidadProducto() {
 		return cantidadProducto;
@@ -77,7 +65,7 @@ public class DetalleVenta {
 
 	@Override
 	public String toString() {
-		return "DetalleVenta [id=" + id + ", cantidadProducto=" + cantidadProducto + ", codigoProducto="
+		return "DetalleVenta [cantidadProducto=" + cantidadProducto + ", codigoProducto="
 				+ codigoProducto + ", valorTotal=" + valorTotal + ", valorVenta=" + valorVenta + ", valorIva="
 				+ valorIva + "]";
 	}

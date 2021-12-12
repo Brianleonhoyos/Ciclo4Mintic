@@ -1,9 +1,7 @@
 package co.edu.unbosque.mClientes.controller;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,15 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.mClientes.modelo.Cliente;
 import co.edu.unbosque.mClientes.repository.ClienteRepository;
-//import jdk.internal.misc.FileSystemOption;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET, 
+		RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/clientes")
 public class ClienteController {
 
@@ -70,7 +69,6 @@ public class ClienteController {
 	@PutMapping("/actualizar/{cedula}")
 	public ResponseEntity<Cliente> updateCliente(@PathVariable("cedula") Integer ced, @RequestBody Cliente cliente) {
 		List<Cliente> clientes = clientRepo.findByCedula(ced);
-		//clientRepo.findByCedula(ced).is;
 		if (clientes.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 

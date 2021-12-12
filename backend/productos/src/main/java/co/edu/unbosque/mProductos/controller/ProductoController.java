@@ -15,22 +15,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unbosque.mProductos.modelo.Producto;
 import co.edu.unbosque.mProductos.repository.ProductoRepository;
 
-
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api")
+@CrossOrigin(origins = "*", methods = {RequestMethod.POST, RequestMethod.GET, 
+		RequestMethod.PUT, RequestMethod.DELETE})
+@RequestMapping("/productos")
 public class ProductoController {
 	
 	@Autowired
 	ProductoRepository producRepo;
 	
-	@PostMapping("/productos")
+	@PostMapping("/guardar")
 	  public ResponseEntity<Producto> createProducto(@RequestBody Producto produc) {
 		  try {
 			    Producto producto = producRepo.save(new Producto(produc.getCodigo(), produc.getNombreProducto(), 
@@ -41,7 +42,7 @@ public class ProductoController {
 			  }
 	  }
 	
-	 @GetMapping("/productos")
+	 @GetMapping("/listar")
 	  public ResponseEntity<List<Producto>> getAllProductos(@RequestParam(required = false) Integer codigo) {
 		  try {
 			    List<Producto> productos = new ArrayList<Producto>();
@@ -61,7 +62,7 @@ public class ProductoController {
 			  }
 	  }
 	 
-	 @PutMapping("/productos/{nit}")
+	 @PutMapping("/actualizar/{nit}")
 	  public ResponseEntity<Producto> updateProducto(@PathVariable("nit") Integer nit, @RequestBody Producto producto) {
 		  Optional<Producto> productoData = producRepo.findByNitProveedor(nit);    
 		  if (productoData.isEmpty()) {
@@ -78,7 +79,7 @@ public class ProductoController {
 		  }
 	  }
 
-	 @DeleteMapping("/productos/{codigo}")
+	 @DeleteMapping("/eliminar/{codigo}")
 	 public ResponseEntity<HttpStatus> deleteProducto(@PathVariable("codigo") Integer codigo) {
 	   try {
 		   producRepo.deleteByCodigo(codigo);
@@ -88,7 +89,7 @@ public class ProductoController {
 	   }
 	 }
 
-	 @DeleteMapping("/productos")
+	 @DeleteMapping("/eliminar")
 	 public ResponseEntity<HttpStatus> deleteAllProductos() {
 	   try {
 		   producRepo.deleteAll();
@@ -98,7 +99,7 @@ public class ProductoController {
 	   }
 	 }
 	 
-	 @PostMapping("/productos/guardarArchivo")
+	 @PostMapping("/guardarArchivo")
 	 public ResponseEntity<String> saveCSV (@RequestBody List<Producto> productos){
 		 try {
 			if(productos.isEmpty()) {
