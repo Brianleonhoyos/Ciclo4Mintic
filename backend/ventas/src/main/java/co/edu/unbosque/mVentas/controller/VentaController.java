@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import co.edu.unbosque.mVentas.modelo.Reporte;
 import co.edu.unbosque.mVentas.modelo.Venta;
 import co.edu.unbosque.mVentas.repository.VentaRepository;
 
-@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT,RequestMethod.DELETE })
-
 @RestController
+@CrossOrigin(origins = "*", methods = { RequestMethod.POST, RequestMethod.GET, RequestMethod.PUT,
+		RequestMethod.DELETE })
 @RequestMapping("/ventas")
 public class VentaController {
 	@Autowired
@@ -67,16 +67,16 @@ public class VentaController {
 	}
 
 	@PutMapping("/actualizar/{codigoVenta}")
-	public ResponseEntity<Venta> updateVenta(@PathVariable("codigoVenta") Integer codigodeVenta, @RequestBody Venta venta) {
+	public ResponseEntity<Venta> updateVenta(@PathVariable("codigoVenta") Integer codigodeVenta,
+			@RequestBody Venta venta) {
 		List<Venta> ventas = ventaRepo.findByCodigoVenta(codigodeVenta);
-		// clientRepo.findByCedula(ced).is;
 		if (ventas.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
 		} else {
 
 			Venta vent = ventas.get(0);
-			//System.out.print(vent);
+			// System.out.print(vent);
 
 			vent.setCedulaCliente(venta.getCedulaCliente());
 			vent.setCodigoVenta(venta.getCodigoVenta());
@@ -87,7 +87,7 @@ public class VentaController {
 			return new ResponseEntity<>(ventaRepo.save(vent), HttpStatus.OK);
 		}
 	}
-	
+
 	@DeleteMapping("/eliminar/{codigoVenta}")
 	public ResponseEntity<HttpStatus> deleteVenta(@PathVariable("codigoVenta") Integer codigo) {
 		try {
@@ -97,7 +97,7 @@ public class VentaController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@DeleteMapping("/eliminarTodos")
 	public ResponseEntity<HttpStatus> deleteAllVentas() {
 		try {
@@ -106,6 +106,48 @@ public class VentaController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	@GetMapping("/reporteClienetes")
+	public ResponseEntity <List<Reporte>> getReporteCliente() {
+
+		List<Reporte> reportes = new ArrayList<Reporte>();
+		List<Venta> ventas = ventaRepo.findAll();
+		List<Double> totalventas = new ArrayList<Double>();
+		double SumaVentas = 0;
+
+		for (int i = 0; i < ventas.size(); i++) {
+			Venta vent = ventas.get(i);
+			i = i + 1;
+			Double suma = vent.getTotalVenta();
+			for (int j = 0; j < ventas.size(); j++) {
+				j = j + 1;
+				Venta ve = ventas.get(j);
+				if (vent.getCedulaCliente() == ve.getCedulaCliente()) {
+					Reporte reporte = new Reporte();
+					suma = suma + ve.getTotalVenta();
+					int cedula = vent.getCedulaCliente();
+					reporte.setCedula(cedula);
+					reporte.setValorTotal(suma);
+					totalventas.add(suma);
+					reportes.add(reporte);
+				}
+				
+			}
+			
+		}
+		for (int k = 0; k < totalventas.size(); k++) {
+			SumaVentas += totalventas.get(k);
+		}
+		System.out.print(reportes);
+		//System.out.print(totalventas);
+		//for (int i = 0; i < totalventas.size(); i++) {
+		//	SumaVentas += totalventas.get(i);
+		//}
+		// reportes.add(SumaVentas);
+		System.out.print("TotalVentas: " + SumaVentas);
+		// System.out.print(reportes);
+		return new ResponseEntity<>(reportes, HttpStatus.OK);
 	}
 
 }

@@ -70,10 +70,9 @@ public class ProveedorController {
 	}
 
 	@PutMapping("/actualizar/{nit}")
-	public ResponseEntity<Proveedor> updateProveedor(@PathVariable("nit") Integer nit,
-			@RequestBody Proveedor proveedor) {
+	public ResponseEntity<Proveedor> updateProveedor(@PathVariable("nit") Integer nit, @RequestBody Proveedor proveedor) {
 		// Optional<Proveedor> proveeData = proveRepo.findByNitO(nit);
-		List<Proveedor> proveedores = new ArrayList<Proveedor>();
+		List<Proveedor> proveedores = proveRepo.findByNit(nit);
 		if (proveedores.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
