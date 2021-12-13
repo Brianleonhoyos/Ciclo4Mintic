@@ -17,9 +17,6 @@ class Venta extends Component {
     clientes = []
 
     productos = {
-        nombreProducto: [],
-        precioCompra: [],
-        ivaCompra: []
     }
     
     precios = {
@@ -146,11 +143,11 @@ class Venta extends Component {
                     
                     <table>
                         <tr>
-                            <td><h5>| Nombre Producto: {this.productos.nombreProducto[0]} |</h5>
+                            <td><h5>| Nombre Producto: {this.productos} |</h5>
                             </td>
-                            <td><h5>| Valor Compra: {this.precios.compra[0]} |</h5>
+                            <td><h5>| Valor Compra: {this.precios} |</h5>
                             </td>
-                            <td><h5>| Valor a Pagar: {this.precios.ventaIva[0]} |</h5>
+                            <td><h5>| Valor a Pagar: {this.precios} |</h5>
                             </td>
                             <td>
                                 
