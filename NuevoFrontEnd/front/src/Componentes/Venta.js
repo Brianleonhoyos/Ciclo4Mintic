@@ -68,44 +68,18 @@ class Venta extends Component {
             precios.ventaIva.push(compraIva);
         }
         
-                    /*let fin = function (productos, precios){
-           render(){
-                return(
+        let fin = function (productos, precios){
+                
+            console.log(productos.nombreProducto[0]);
+                return( //let doubled = numbers.map((num, index) => num * 2);
                     <div>
-                        <p>Nombre Producto</p>
-                        {
-                            productos.map((product) => {
-                                return(
-                                    <React.Fragment>
-                                        <p>{product.nombreProducto}</p>
-                                    </React.Fragment>
-                                );
-                            })
-                        }
-                        <p>Valor Compra</p>
-                        {
-                            precios.map((price) => {
-                                return(
-                                    <React.Fragment>
-                                        <p>{price.compra}</p>
-                                    </React.Fragment>
-                                );
-                            })
-                        }
-                        <p>Valor a Pagar</p>
-                        {
-                            precios.map((price) => {
-                                return(
-                                    <React.Fragment>
-                                        <p>{price.ventaIva}</p>
-                                    </React.Fragment>
-                                );
-                            })
-                        }
+
+                       
+
                     </div>
                 );
-           }
-        }*/
+           
+        }
 
            
 
@@ -115,7 +89,7 @@ class Venta extends Component {
 
         math(this.cantidad.current.value, this.productos.precioCompra, this.productos.ivaCompra, this.precios);
          
-        //fin(this.productos, this.precios)
+        fin(this.productos, this.precios)
 
         //aun falta por calcular el precio mas el iva y los dos formularios mas para cargar tres objetos como dicta el pdf, pero primero quiero saber si todo funcion
     }
@@ -164,24 +138,35 @@ class Venta extends Component {
 
                     <form onSubmit={this.submit}>
 
-                        <h3>Cedula: </h3>
-                        <input type = "text" placeholder = "317382091828"  id = "cedula" ref = {this.cedula}/>
-                        
-                        <h3> Codigo del Producto </h3> 
-                        <input id = "codigo" placeholder = "007" ref = {this.codigo}/>
-
-                        <h3>Cantidad</h3> 
-                        <input type = "number" id = "cantidad" placeholder = "'1' por defecto" ref = {this.cantidad}/>
+                        <h3>|Cedula || Codigo del Producto || Cantidad|</h3> 
+                        <input type = "text" placeholder = "317382091828"  id = "cedula" ref = {this.cedula}/> <input id = "codigo" placeholder = "007" ref = {this.codigo}/> <input type = "number" id = "cantidad" placeholder = "'1' por defecto" ref = {this.cantidad}/>
                         <br></br>
                         <button type="submit">Consultar</button>  
                     </form>
-               
-
-                    <button onClick={ 
-                        () => {
-                            this.guardarVentas(this.clientes, this.productos, this.precios, this.cantidad.current.value, this.codigo.current.value)
-                            }
-                    }>Enviar</button>
+                    
+                    <table>
+                        <tr>
+                            <td><p>| Nombre Producto: {this.productos.nombreProducto[0]} |</p>
+                            </td>
+                            <td><p>| Valor Compra: {this.precios.compra[0]} |</p>
+                            </td>
+                            <td><p>| Valor a Pagar: {this.precios.ventaIva[0]} |</p>
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>     
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button onClick={ 
+                                    () => {
+                                    this.guardarVentas(this.clientes, this.productos, this.precios, this.cantidad.current.value, this.codigo.current.value)
+                                    }
+                                }>Enviar Datos</button>
+                            </td>
+                        </tr>                                            
+                    </table>                    
                     <br></br>
                     <br></br>
                     <br></br>
