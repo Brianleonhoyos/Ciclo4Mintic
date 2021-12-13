@@ -73,21 +73,19 @@ class Venta extends Component {
 
         math(this.cantidad.current.value, this.productos.precioCompra, this.productos.ivaCompra, this.precios);
          
-        this.FinHTML(this.productos, this.precios)
-
         //aun falta por calcular el precio mas el iva y los dos formularios mas para cargar tres objetos como dicta el pdf, pero primero quiero saber si todo funcion
     }
 
-    FinHTML = function (productos, precios) {
+    FinHTML = function () {
 
              return(
              <div>
                  <table>
-                     <td><h5>| Nombre Producto: {<div>{productos.nameProducto[0]}</div>} |</h5>
+                     <td><h5>| Nombre Producto: {<div>{this.productos.nameProducto[0]}</div>} |</h5>
                      </td>
-                     <td><h5>| Valor Compra: {<div>{precios.compra[0]}</div>} |</h5>
+                     <td><h5>| Valor Compra: {<div>{this.precios.compra[0]}</div>} |</h5>
                      </td>
-                     <td><h5>| Valor a Pagar: {<div>{precios.ventaIva[0]}</div>} |</h5>
+                     <td><h5>| Valor a Pagar: {<div>{this.precios.ventaIva[0]}</div>} |</h5>
                      </td>
                  </table>
                  <br></br>
@@ -127,9 +125,7 @@ class Venta extends Component {
                 status: "succes"
            })
         })
-        .catch(console.log)
-        //Me esta llamando esta funcion al puro principio, me detecta el ultimo boton que lo llama, pero no se porque se llama solo
-        
+        .catch(console.log)        
 
     }
     
@@ -156,10 +152,7 @@ class Venta extends Component {
                                     this.guardarVentas(this.clientes, this.productos, this.precios, this.cantidad.current.value, this.codigo.current.value)
                                     }
                                 }>Enviar Datos</button>
-
-                                {
-                                    this.FinHTML
-                                }
+                                <FinHTML/>
                             </td>
                         </tr>                                            
                     </table>                    
