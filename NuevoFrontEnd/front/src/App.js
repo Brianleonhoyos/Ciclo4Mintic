@@ -20,6 +20,7 @@ function App() {
         <Rutas/>
         </>:<Main/>
         }
+        
       </header>
     </div>
   );
