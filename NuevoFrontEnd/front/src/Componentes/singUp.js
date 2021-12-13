@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+
 class singUp extends Component {
     render() {
         return (
@@ -10,7 +12,6 @@ class singUp extends Component {
                             Registro de Cuenta
                         </div>
                         <div class="card-body">
-                            <form action="/users/signup" method="POST">
                                 <div class="form-group p-2">
                                     <input type="text" class="form-control" name="name" placeholder="Nombre" />
 
@@ -27,11 +28,8 @@ class singUp extends Component {
 
                                 </div>
                                 <div class="form-group p-2">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        Registrar
-                                    </button>
+                                
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>

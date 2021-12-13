@@ -1,5 +1,10 @@
 import React, {Component} from "react";
+
+
 class singIn extends Component{
+
+
+
     render(){
         return(
         
@@ -11,7 +16,6 @@ class singIn extends Component{
                         </div>
                         <img src="/recursos/imagenes/3582883.jpg" class="rounded-circle mx-auto d-block m-4 logo" alt="Logo"/>
                         <div class="card-body">
-                            <form action="/users/signin" method="POST">
                                 <div class="form-goup p-2">
                                     <input type="email" class="form-control" name="email" placeholder="Correo" autofocus/>
                                 </div>
@@ -19,16 +23,13 @@ class singIn extends Component{
                                     <input type="password" name="password" class="form-control" placeholder="Clave"/>
                                 </div>
                                 <div class="form-goup p-2 center">
-                                    <button type="submit" class="btn btn-primary btn-block">
-                                        Ingresar
-                                    </button>
+                                <LoginButton/>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
+             
 
         );
     }
