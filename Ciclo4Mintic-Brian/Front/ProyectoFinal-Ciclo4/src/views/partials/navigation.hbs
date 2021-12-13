@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/"> La Generica </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/"> Inicio </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about"> Nosotros </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {{#if user}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Servicios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="/servicios/productos"> Productos</a></li>
+                        <li><a class="dropdown-item" href="/servicios/clientes"> Clientes</a></li>
+                        <li>
+                        <li><a class="dropdown-item" href="/servicios/ventas"> Ventas</a></li>
+                        <li>
+                        <li><a class="dropdown-item" href="/servicios/reportes"> Reportes</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/users/logout">Cerrar Sesion</a></li>
+                    </ul>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/signin"> Iniciar Sesion </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/users/signup"> Registrarse </a>
+                </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
