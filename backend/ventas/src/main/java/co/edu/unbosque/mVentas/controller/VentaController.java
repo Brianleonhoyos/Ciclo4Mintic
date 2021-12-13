@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.unbosque.mVentas.modelo.Reporte;
 import co.edu.unbosque.mVentas.modelo.Venta;
 import co.edu.unbosque.mVentas.repository.VentaRepository;
 
@@ -106,31 +107,46 @@ public class VentaController {
 		}
 	}
 	
-	@GetMapping("/reporteClienetes")
-	public ArrayList<Number> getReporteCliente(){
-		
-		ArrayList <Number>reportes = new ArrayList<Number>();
+	@GetMapping("/reporteClientes")
+	public ResponseEntity <List<Reporte>> getReporteCliente() {
+
+		List<Reporte> reportes = new ArrayList<Reporte>();
 		List<Venta> ventas = ventaRepo.findAll();
-		for (int i=0; i < ventas.size() ; i++) {
+		List<Double> totalventas = new ArrayList<Double>();
+		double SumaVentas = 0;
+
+		for (int i = 0; i < ventas.size(); i++) {
 			Venta vent = ventas.get(i);
+			i = i + 1;
 			Double suma = vent.getTotalVenta();
-			for (int j=0; j < ventas.size(); j++) {
-				j=j+1;
+			for (int j = 0; j < ventas.size(); j++) {
+				j = j + 1;
 				Venta ve = ventas.get(j);
-				if(vent.getCedulaCliente() == ve.getCedulaCliente()) {
-					System.out.print(vent.getCedulaCliente());
-					System.out.print(ve.getCedulaCliente());
-					suma = suma +ve.getTotalVenta();
-					System.out.print(suma);
-				}else {
-					reportes.add(vent.getCedulaCliente());
-					reportes.add(suma);
+				if (vent.getCedulaCliente() == ve.getCedulaCliente()) {
+					Reporte reporte = new Reporte();
+					suma = suma + ve.getTotalVenta();
+					int cedula = vent.getCedulaCliente();
+					reporte.setCedula(cedula);
+					reporte.setValorTotal(suma);
+					totalventas.add(suma);
+					reportes.add(reporte);
 				}
-			}	
-					
+				
+			}
+			
+		}
+		for (int k = 0; k < totalventas.size(); k++) {
+			SumaVentas += totalventas.get(k);
 		}
 		System.out.print(reportes);
-		return reportes;
+		//System.out.print(totalventas);
+		//for (int i = 0; i < totalventas.size(); i++) {
+		//	SumaVentas += totalventas.get(i);
+		//}
+		// reportes.add(SumaVentas);
+		System.out.print("TotalVentas: " + SumaVentas);
+		// System.out.print(reportes);
+		return new ResponseEntity<>(reportes, HttpStatus.OK);
 	}
 
 }
