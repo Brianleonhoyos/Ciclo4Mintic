@@ -17,6 +17,7 @@ class Venta extends Component {
     clientes = []
 
     productos = {
+        nameProducto: [23]
     }
     
     precios = {
@@ -65,33 +66,38 @@ class Venta extends Component {
             precios.ventaIva.push(compraIva);
         }
         
-        let fin = function (productos, precios){
-                
-            console.log(productos.nombreProducto[0]);
-                return( //let doubled = numbers.map((num, index) => num * 2);
-                    <div>
-
-                       
-
-                    </div>
-                );
-           
-        }
-
-           
-
+       
         takeCliente(this.cedula.current.value, this.clientes);
         
         takeProducto(this.codigo.current.value, this.productos);
 
         math(this.cantidad.current.value, this.productos.precioCompra, this.productos.ivaCompra, this.precios);
          
-        fin(this.productos, this.precios)
+        this.FinHTML(this.productos, this.precios)
 
         //aun falta por calcular el precio mas el iva y los dos formularios mas para cargar tres objetos como dicta el pdf, pero primero quiero saber si todo funcion
     }
 
+    FinHTML = function (productos, precios) {
 
+             return(
+             <div>
+                 <table>
+                     <td><h5>| Nombre Producto: {<div>{productos.nameProducto[0]}</div>} |</h5>
+                     </td>
+                     <td><h5>| Valor Compra: {<div>{precios.compra[0]}</div>} |</h5>
+                     </td>
+                     <td><h5>| Valor a Pagar: {<div>{precios.ventaIva[0]}</div>} |</h5>
+                     </td>
+                 </table>
+                 <br></br>
+                 <br></br>
+                 <br></br>
+             </div>
+                         
+             );
+         
+     }
 
     guardarVentas = (clientes, productos, precios, cantidad, codigo) => {
 
@@ -143,17 +149,6 @@ class Venta extends Component {
                     
                     <table>
                         <tr>
-                            <td><h5>| Nombre Producto: {this.productos} |</h5>
-                            </td>
-                            <td><h5>| Valor Compra: {this.precios} |</h5>
-                            </td>
-                            <td><h5>| Valor a Pagar: {this.precios} |</h5>
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>     
-                        <tr>
                             <td></td>
                             <td>
                                 <button onClick={ 
@@ -161,13 +156,14 @@ class Venta extends Component {
                                     this.guardarVentas(this.clientes, this.productos, this.precios, this.cantidad.current.value, this.codigo.current.value)
                                     }
                                 }>Enviar Datos</button>
+
+                                {
+                                    this.FinHTML
+                                }
                             </td>
                         </tr>                                            
                     </table>                    
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                                         
+                          
                 </div>
             );
         }
@@ -176,4 +172,3 @@ class Venta extends Component {
 
 
     export default Venta;
-
